@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.admin.jerusalert.MainActivity">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxWidth="100dp"
+        android:maxHeight="100dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_launcher2"
+        android:id="@+id/animals_button"
+        android:layout_marginLeft="42dp"
+        android:layout_marginStart="42dp"
+        android:layout_alignTop="@+id/electricity_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxWidth="100dp"
+        android:maxHeight="100dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/cat"
+        android:id="@+id/electricity_button"
+        android:layout_marginTop="54dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/animals_button"
+        android:layout_toEndOf="@+id/animals_button" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/water_button"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_alignTop="@+id/electricity_button"
+        android:layout_toRightOf="@+id/electricity_button"
+        android:layout_toEndOf="@+id/electricity_button" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fire_button"
+        android:layout_marginTop="87dp"
+        android:layout_below="@+id/animals_button"
+        android:layout_alignLeft="@+id/animals_button"
+        android:layout_alignStart="@+id/animals_button" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sanitation_button"
+        android:layout_alignTop="@+id/fire_button"
+        android:layout_toLeftOf="@+id/water_button"
+        android:layout_toStartOf="@+id/water_button" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nature_button"
+        android:layout_alignTop="@+id/fire_button"
+        android:layout_alignLeft="@+id/water_button"
+        android:layout_alignStart="@+id/water_button" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/traffic_button"
+        android:layout_alignTop="@+id/security_button"
+        android:layout_alignLeft="@+id/fire_button"
+        android:layout_alignStart="@+id/fire_button" />
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/security_button"
+        android:layout_below="@+id/sanitation_button"
+        android:layout_toLeftOf="@+id/water_button"
+        android:layout_toStartOf="@+id/water_button"
+        android:layout_marginTop="85dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/inspection_button"
+        android:layout_alignTop="@+id/security_button"
+        android:layout_alignLeft="@+id/nature_button"
+        android:layout_alignStart="@+id/nature_button" />
+
+
+</RelativeLayout>
