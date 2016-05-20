@@ -12,7 +12,6 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,6 +20,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,12 +36,10 @@ import java.util.List;
 
 
 public class Form extends Activity implements AdapterView.OnItemSelectedListener {
-    private static final String TAG = Form.class.getName();
-    private TextView latituteField;
+    public reportObj reportObj;
     private TextView categoryValue;
-
-    private TextView longitudeField;
     private String provider;
+    EditText phone;
     private LocationListener locationListener;
     private LocationManager locationManager;
     private ImageButton loc_btn;
@@ -62,7 +61,6 @@ public class Form extends Activity implements AdapterView.OnItemSelectedListener
     static final int REQUEST_TAKE_PHOTO = 1;
 
     private void dispatchTakePictureIntent() {
-        Toast.makeText(Form.this, "hello", Toast.LENGTH_SHORT).show();
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -97,15 +95,24 @@ public class Form extends Activity implements AdapterView.OnItemSelectedListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
+        reportObj = new reportObj();
+        phone = (EditText) findViewById(R.id.phoneNumber);
+
         categoryValue = (TextView) findViewById(R.id.categoryValue);
         SharedPreferences sp = getSharedPreferences("categories", Context.MODE_PRIVATE);
-        String val = sp.getString("categories", null);
+        String val = sp.getString("category", null);
         if(val != null){
             categoryValue.setText(val);
-
+            reportObj.Category = val;
         }else{
             categoryValue.setText("xxxxxxx");
+            reportObj.Category = null;
+
         }
+
+        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+        reportObj.Report_time = currentDateTimeString;
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
@@ -115,16 +122,54 @@ public class Form extends Activity implements AdapterView.OnItemSelectedListener
 
         // Spinner click listener
         spinner.setOnItemSelectedListener(this);
-
-        // Spinner Drop down elements
-        List<String> categories = new ArrayList<String>();
-        categories.add("שריפה");
-        categories.add("Business Services");
-        categories.add("Computers");
-        categories.add("Education");
-        categories.add("Personal");
-        categories.add("Travel");
-
+        ArrayList<String> categories = new ArrayList<String>();
+        if (val == "fire") {
+            // Spinner Drop down elements
+            categories.add("שריפה");
+        }
+        if (val == "animals") {
+            // Spinner Drop down elements
+            categories.add("חתול על עץ");
+            categories.add("נחש ארסי");
+            categories.add("כלב נובח");
+            categories.add("גמל בדרך");
+            categories.add("שועל ברחוב");
+        }
+        if (val == "electricity") {
+            // Spinner Drop down elements
+            categories.add("הפסקת חשמל");
+            categories.add("עמוד חשמל נפל");
+            categories.add("כבל חשמל נקרע");
+        }
+        if (val == "water") {
+            // Spinner Drop down elements
+            categories.add("הצפה");
+            categories.add("הפסקת מים");
+            categories.add("פיצוץ בצינור");
+        }
+        if (val == "sanitation") {
+            // Spinner Drop down elements
+            categories.add("שריפה");
+        }
+        if (val == "nature") {
+            // Spinner Drop down elements
+            categories.add("שריפה");
+        }
+        if (val == "traffic") {
+            // Spinner Drop down elements
+            categories.add("שריפה");
+        }
+        if (val == "security") {
+            // Spinner Drop down elements
+            categories.add("שריפה");
+        }
+        if (val == "inspection") {
+            // Spinner Drop down elements
+            categories.add("שריפה");
+        }
+        if (val == null){
+            categories.add("");
+        }
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
@@ -141,6 +186,9 @@ public class Form extends Activity implements AdapterView.OnItemSelectedListener
         send_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                reportObj.Phone = phone.getText().toString();
+
+
                 Toast.makeText(Form.this, "תודה שדיווחת", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, MainScreen.class);
                 startActivity(intent);
@@ -170,8 +218,6 @@ public class Form extends Activity implements AdapterView.OnItemSelectedListener
 
 
     public void myLocation() {
-        latituteField = (TextView) findViewById(R.id.textView1);
-        longitudeField = (TextView) findViewById(R.id.textView2);
 
         // Get the location manager
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -233,8 +279,8 @@ public class Form extends Activity implements AdapterView.OnItemSelectedListener
             System.out.println("Provider " + provider + " has been selected.");
             onLocationChanged1(location);
         } else {
-            latituteField.setText("Location not available");
-            longitudeField.setText("Location not available");
+            reportObj.Location_x = 0;
+            reportObj.Location_y = 0;
         }
     }
     @Override
@@ -243,7 +289,7 @@ public class Form extends Activity implements AdapterView.OnItemSelectedListener
         String item = parent.getItemAtPosition(position).toString();
 
         //save subcategory
-        //subCategory = parent.getContext();
+        reportObj.Subcategory = parent.getContext().toString();
 
     }
     public void onNothingSelected(AdapterView<?> arg0) {
@@ -263,8 +309,8 @@ public class Form extends Activity implements AdapterView.OnItemSelectedListener
     public void onLocationChanged1(Location location) {
         double lat = location.getLatitude();
         double lng = location.getLongitude();
-        latituteField.setText(String.valueOf(lat));
-        longitudeField.setText(String.valueOf(lng));
+        reportObj.Location_x = lat;
+        reportObj.Location_y = lng;
     }
 
     public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -286,7 +332,7 @@ public class Form extends Activity implements AdapterView.OnItemSelectedListener
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-       // getMenuInflater().inflate(R.menu.menu_form, menu);
+        // getMenuInflater().inflate(R.menu.menu_form, menu);
         return true;
     }
 
