@@ -33,7 +33,7 @@ public class plscActivity extends ActionBarActivity {
 
         };
         Timer t = new Timer();
-        t.schedule(task, 5000);
+        t.schedule(task, 10000);
 
 
     }
