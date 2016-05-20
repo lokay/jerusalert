@@ -199,10 +199,10 @@ public class MyReqStatus extends AppCompatActivity {
 
             status = new TextView(this);
             status.setGravity(Gravity.CENTER_HORIZONTAL);
-            if (myAlerts.get(i).get(4) == "in progress"){
+            if (myAlerts.get(i).get(4).equals("in progress")){
                 status.setBackgroundColor(Color.YELLOW);
                 status.setText("בטיפול");
-            } else if (myAlerts.get(i).get(4) == "not read"){
+            } else if (myAlerts.get(i).get(4).equals("not read")){
                 status.setBackgroundColor(Color.RED);
                 status.setText("לא התקבל");
             } else {

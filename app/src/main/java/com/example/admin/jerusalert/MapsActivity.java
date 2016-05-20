@@ -36,10 +36,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         myLocation();
-        ArrayList<reportObj> reportList = new ArrayList<reportObj>();
-        reportObj obj1 = new reportObj();
-        reportObj obj2 = new reportObj();
-        reportObj obj3 = new reportObj();
+        ArrayList<ReportObj> reportList = new ArrayList<ReportObj>();
+        ReportObj obj1 = new ReportObj();
+        ReportObj obj2 = new ReportObj();
+        ReportObj obj3 = new ReportObj();
 
         obj1.Location_x = 31.787120;
         obj1.Location_y = 35.201333;
@@ -56,8 +56,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markReports(reportList);
     }
 
-    public void markReports(ArrayList<reportObj> reportList){
-        for (int i=0 ; i <=reportList.size() ; i++){
+    public void markReports(ArrayList<ReportObj> reportList){
+        for (int i=0 ; i <reportList.size() ; i++){
             LatLng mylocation = new LatLng(reportList.get(i).Location_x,reportList.get(i).Location_y);
             mMap.addMarker(new MarkerOptions().position(mylocation));
         }
@@ -141,13 +141,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onProviderEnabled(String s) {
                 Log.d("a", "c");
-
             }
 
             @Override
             public void onProviderDisabled(String s) {
                 Log.d("a", "b");
-
             }
 
         });
