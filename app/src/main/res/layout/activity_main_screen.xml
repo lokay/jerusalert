@@ -25,9 +25,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/other_report_button"
-        android:src = "@drawable/nearrports"
+        android:src = "@drawable/nearreports"
         android:layout_alignBottom="@+id/button3"
-        android:layout_alignTop="@+id/button3" />
+        android:layout_below="@+id/report_button" />
 
     <ImageButton
         android:layout_width="wrap_content"

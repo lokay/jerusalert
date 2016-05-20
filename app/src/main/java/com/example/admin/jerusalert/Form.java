@@ -36,7 +36,7 @@ import java.util.List;
 
 
 public class Form extends Activity implements AdapterView.OnItemSelectedListener {
-    public reportObj reportObj;
+    public ReportObj reportObj;
     private TextView categoryValue;
     private String provider;
     EditText phone;
@@ -95,7 +95,7 @@ public class Form extends Activity implements AdapterView.OnItemSelectedListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
-        reportObj = new reportObj();
+        reportObj = new ReportObj();
         phone = (EditText) findViewById(R.id.phoneNumber);
 
         categoryValue = (TextView) findViewById(R.id.categoryValue);
