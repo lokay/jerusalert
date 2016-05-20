@@ -8,7 +8,7 @@ public class ReportObj {
 	public String Subcategory;
 	public int Location_x;
 	public int Location_y;
-	public LocalDateTime Report_time;
+	public String Report_time;
 	public String Report_text;
 	public String Phone;
 	public int Counter;
@@ -19,7 +19,7 @@ public class ReportObj {
 		Subcategory = "";
 		Location_x = 0;
 		Location_y = 0;
-		Report_time = LocalDateTime.now();
+		Report_time = "";
 		Report_text = "";
 		Phone = "";
 		Counter = 0;
