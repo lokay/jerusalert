@@ -17,6 +17,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -53,15 +54,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         reportList.add(obj1);
         reportList.add(obj2);
         reportList.add(obj3);
-        markReports(reportList);
+//        markReports(reportList);
+//        LatLng mylocation;
+//        mylocation = new LatLng(31.787120,35.201333);
+//        MarkerOptions marker = new MarkerOptions();
+//        mMap.addMarker(marker.position(mylocation));
+
     }
 
-    public void markReports(ArrayList<ReportObj> reportList){
-        for (int i=0 ; i <reportList.size() ; i++){
-            LatLng mylocation = new LatLng(reportList.get(i).Location_x,reportList.get(i).Location_y);
-            mMap.addMarker(new MarkerOptions().position(mylocation));
-        }
-    }
+//    public void markReports(ArrayList<ReportObj> reportList){
+//        LatLng mylocation;
+//        for (int i=0 ; i <reportList.size() ; i++){
+//            mylocation = new LatLng(reportList.get(i).Location_x,reportList.get(i).Location_y);
+//            mMap.addMarker(new MarkerOptions().position(mylocation));
+//        }
+//    }
 
     /**
      * Manipulates the map once available.
@@ -75,6 +82,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        LatLng mylocation;
+        mylocation = new LatLng(31.777543,35.199469);
+        MarkerOptions marker = new MarkerOptions();
+        mMap.addMarker(marker.position(mylocation));
+
+        mylocation = new LatLng(31.780884,35.197062);
+        marker = new MarkerOptions();
+        mMap.addMarker(marker.position(mylocation));
+
+        mylocation = new LatLng(31.776758,35.196052);
+        marker = new MarkerOptions();
+        mMap.addMarker(marker.position(mylocation));
+
+
 
         // Add a marker in Sydney and move the camera
         // LatLng sydney = new LatLng(-34, 151);
