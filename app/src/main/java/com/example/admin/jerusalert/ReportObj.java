@@ -1,4 +1,5 @@
-import java.time.LocalDateTime;
+package com.example.admin.jerusalert;
+
 import java.util.Date;
 
 
@@ -6,8 +7,8 @@ public class ReportObj {
 	public int Id;
 	public String Category;
 	public String Subcategory;
-	public int Location_x;
-	public int Location_y;
+	public double Location_x;
+	public double Location_y;
 	public String Report_time;
 	public String Report_text;
 	public String Phone;

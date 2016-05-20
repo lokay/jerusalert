@@ -1,8 +1,10 @@
 package com.example.admin.jerusalert;
 
         import android.content.Intent;
+        import android.os.Message;
         import android.support.v7.app.ActionBarActivity;
         import android.os.Bundle;
+        import android.support.v7.app.AppCompatActivity;
         import android.view.Menu;
         import android.view.MenuItem;
 
@@ -11,31 +13,27 @@ package com.example.admin.jerusalert;
         import java.util.logging.Handler;
 
 
-public class plscActivity extends ActionBarActivity {
-
+public class plscActivity extends AppCompatActivity {
+    static Handler handler;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        TimerTask task = new TimerTask() {
-
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                Intent intent = new Intent(plscActivity.this, MainActivity.class);
-                startActivity(intent);
-                finishscreen();
-            }
-
-            private void finishscreen() {
-                plscActivity.this.finish();
-            }
-
-        };
-        Timer t = new Timer();
-        t.schedule(task, 10000);
-
-
+        setContentView(R.layout.activity_plsc);
+//        handler = new Handler(){
+//            @Override
+//            public void handleMessage(Message msg){
+//                Intent intent = new Intent().setClass(plscActivity.this, MainActivity.class);
+//                startActivity(intent);
+//                }
+//            };
+//        handler.sendEmptyMesssageDelayed(0,2000);
+////        int secondsDelayed = 1;
+////        handler = new Handler().postDelayed(new Runnable() {
+////            public void run() {
+////                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+////                finish();
+////            }
+////        }, secondsDelayed * 1000);
     }
 
 
